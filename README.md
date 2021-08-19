@@ -7,7 +7,7 @@ Ejecutar el comando `npm run dev` para ejecutar el servicio en modo de desarroll
 ### Variables de entorno
 La aplicación utiliza dos variables de entorno: 
 `PORT`: Indica el puerto en el que se ejecuta la aplicación. El valor por defecto es 3011.
-`DATABSE`: Cadena de conexión al servidor de BD o cluster de BD de MongoDB.
+`DATABASE`: Cadena de conexión al servidor de BD o cluster de BD de MongoDB.
 
 Deberá verificar que existe el archivo `.env` en la carpeta `src`
 
