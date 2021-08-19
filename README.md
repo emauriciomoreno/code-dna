@@ -53,7 +53,7 @@ En caso contrario recibirá una respuesta `403-Forbidden` con el siguiente conte
 {
     error: true,
     data: {
-        result: true
+        result: false
     },
     message: 'La cadena recibida no tiene mutaciones'
 }
