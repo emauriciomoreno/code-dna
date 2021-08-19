@@ -1,6 +1,6 @@
 {
   "name": "code-dna",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Backend del proyecto de Mutaciones de ADN",
   "main": "build/server.js",
   "scripts": {
