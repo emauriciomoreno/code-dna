@@ -12,7 +12,7 @@ class Database {
      * @returns cliente de conexión y la conexión a la BD
      */
     async init() {
-        const MONGO_DB = process.env.DATABASE || 'mongodb+srv://adnetsdevusr:UsRAnS2020@s2r.jq2qg.mongodb.net/dbadnetsdev?retryWrites=true&w=majority';
+        const MONGO_DB = process.env.DATABASE || '';
         const client = await MongoClient.connect(MONGO_DB, {
             useNewUrlParser: true,
             useUnifiedTopology: true
