@@ -15,6 +15,84 @@ describe('Verificación de mutaciones de ADN', () => {
         expect(result).toBe(true);
     });
 
+    it('Debe retornar true, es decir se detectó mutación oblicua', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATGCGA',
+            'CAGTCC',
+            'TTATGT',
+            'AGTAGG',
+            'CTCCTA',
+            'TCACTG'
+        ]);
+        expect(result).toBe(true);
+    });
+
+    it('Debe retornar true, es decir se detectó mutación oblicua', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATGCGA',
+            'CAGGCC',
+            'TTATGT',
+            'AGAAGG',
+            'CTCCTA',
+            'TCACTG'
+        ]);
+        expect(result).toBe(true);
+    });
+
+    it('Debe retornar true, es decir se detectó mutación vertical', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATGCGA',
+            'CAGCGC',
+            'TTCTGT',
+            'ATAAGG',
+            'CTCCTA',
+            'TTACTG'
+        ]);
+        expect(result).toBe(true);
+    });
+
+    it('Debe retornar true, es decir se detectó mutación vertical', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATGCGA',
+            'CTGCGC',
+            'TTCTCA',
+            'ATAAGA',
+            'CGCCTA',
+            'TTACTA'
+        ]);
+        expect(result).toBe(true);
+    });
+
+    it('Debe retornar true, es decir se detectó mutación horizontal', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATTTTA',
+            'CTGCGC',
+            'TTCTCC',
+            'ATAAGA',
+            'CGCCTA',
+            'TTACTA'
+        ]);
+        expect(result).toBe(true);
+    });
+
+    it('Debe retornar true, es decir se detectó mutación horizontal', () => {
+        const dnaService = new DnaService();
+        const result = dnaService.hasMutation([
+            'ATTTTA',
+            'CTGCGC',
+            'TTCTCC',
+            'ATAAGA',
+            'CAAAAA',
+            'TTACTA'
+        ]);
+        expect(result).toBe(true);
+    });
+
     it('Debe retornar false, es decir no se detectó mutación', () => {
         const dnaService = new DnaService();
         const result = dnaService.hasMutation([

@@ -56,33 +56,30 @@ class DnaService {
         let secuenciasRepetidas = 0;
 
         //* Verificar en los horizontales de la matriz
-        if (this.hasHorizontalSequence(dna)) {
-            ++ secuenciasRepetidas;
+        secuenciasRepetidas +=  this.hasHorizontalSequence(dna);
+        if (secuenciasRepetidas > 1) {
+            return true;
         }
 
         //* Verificar en los verticales de la matriz
-        if (this.hasVerticalSequence(dna)) {
-            ++ secuenciasRepetidas;
-            if (secuenciasRepetidas > 1) {
-                return true;
-            }
+        secuenciasRepetidas += this.hasVerticalSequence(dna);
+        if (secuenciasRepetidas > 1) {
+            return true;
         }
 
         //* Verificar en las diagonales de la matriz
-        if (this.hasDiagonalSequence(dna, false)) {
-            ++ secuenciasRepetidas;
-            if (secuenciasRepetidas > 1) {
-                return true;
-            }
+        secuenciasRepetidas += this.hasDiagonalSequence(dna, false);
+        if (secuenciasRepetidas > 1) {
+            return true;
         }
 
         //* Verificar en las diagonales de la matriz de abajo hacia arriba
-        if (this.hasDiagonalSequence(dna, true)) {
-            ++ secuenciasRepetidas;
-            if (secuenciasRepetidas > 1) {
-                return true;
-            }
+        secuenciasRepetidas += this.hasDiagonalSequence(dna, true);
+        if (secuenciasRepetidas > 1) {
+            return true;
         }
+
+        //* No hay secuencias repetidas
         return false;
     }
 
@@ -92,13 +89,14 @@ class DnaService {
      * @returns true si se encontró una secuencia, de lo contrario
      * regresa false.
      */
-    private hasHorizontalSequence(dna: string[]) {
+    private hasHorizontalSequence(dna: string[]): number {
+        let count = 0;
         for (let i = 0; i < dna.length; i++) {
             if (dna[i].match(this.validaMutacion)) {
-                return true;
+                ++count;
             }
         }
-        return false;
+        return count;
     }
 
     /**
@@ -107,17 +105,18 @@ class DnaService {
      * @returns true si se encontró una secuencia, de lo contrario
      * regresa false.
      */
-    private hasVerticalSequence(dna: string[]) {
+    private hasVerticalSequence(dna: string[]): number {
+        let count = 0;
         for (let i = 0; i < dna.length; i++) {
             let cadena = '';
             for (let j = 0; j < dna.length; j++) {
                 cadena += dna[j][i]; 
             }
             if (cadena.match(this.validaMutacion)) {
-                return true;
+                ++count;
             }
         }
-        return false;
+        return count;
     }
 
     /**
@@ -127,7 +126,8 @@ class DnaService {
      * @returns true si se encontró una secuencia, de lo contrario
      * regresa false.
      */
-    private hasDiagonalSequence(dna: string[], bottomToTop: boolean = false) {
+    private hasDiagonalSequence(dna: string[], bottomToTop: boolean = false): number {
+        let count = 0;
         for (let i = 0; i <= 2 * (dna.length - 1); ++i) {
             let cadena = '';
             for (let j = dna.length - 1; j >= 0; --j) {
@@ -137,10 +137,10 @@ class DnaService {
                 }
             }
             if(cadena.length > 3 && cadena.match(this.validaMutacion)) {
-                return true;
+                ++count;
             }
         }
-        return false;
+        return count;
     }
 }
 
